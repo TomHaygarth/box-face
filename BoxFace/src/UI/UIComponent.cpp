@@ -18,10 +18,10 @@ void UIComponent::OnClick()
 void UIComponent::Draw(HDC &hdc,float &screenWidth, float &screenHeight)
 {
 	RECT rt;
-	rt.top = m_drawRect.top * screenHeight;
-	rt.bottom = m_drawRect.bottom * screenHeight;
-	rt.left = m_drawRect.left * screenWidth;
-	rt.right = m_drawRect.right * screenWidth;
+	rt.top = static_cast<LONG>(m_drawRect.top * screenHeight);
+	rt.bottom = static_cast<LONG>(m_drawRect.bottom * screenHeight);
+	rt.left = static_cast<LONG>(m_drawRect.left * screenWidth);
+	rt.right = static_cast<LONG>(m_drawRect.right * screenWidth);
 
 	if(m_selected)
 	{

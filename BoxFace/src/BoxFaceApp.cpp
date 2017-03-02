@@ -78,8 +78,8 @@ void BoxFaceApp::Update()
 		// TODO: Fix bug where top left direction moves cursor faster
 		// it is because the -ve float value is rounded down to -1 first, where all +ve values are rounded down so stays at 0 longer
 		GetCursorPos(&mMousePos);
-		mMousePos.x += (mXboxController.RightStickPos().X*100.0f*mMouseLookSlider->GetValue());
-		mMousePos.y -= (mXboxController.RightStickPos().Y*100.0f*mMouseLookSlider->GetValue());
+		mMousePos.x += static_cast<LONG>(mXboxController.RightStickPos().X*100.0f*mMouseLookSlider->GetValue());
+		mMousePos.y -= static_cast<LONG>(mXboxController.RightStickPos().Y*100.0f*mMouseLookSlider->GetValue());
 
 		//SendMessage(NULL, WM_MOUSEMOVE, 0,  LOWORD(mMousePos.x) + HIWORD(mMousePos.y));
 
@@ -125,7 +125,10 @@ void BoxFaceApp::Update()
 		PostMessage(mMsgWindow, WM_MOUSEWHEEL , HIWORD(-120), LOWORD(mMousePos.x) + HIWORD(mMousePos.y));
 	}
 
-	mXboxController.SetVibration(255*mXboxController.LeftTrigger(), 255*mXboxController.RightTrigger()); 
+	char leftActuatorIntensity = static_cast<byte>(255 * mXboxController.LeftTrigger());
+	char rightActuatorIntensity = static_cast<byte>(255 * mXboxController.RightTrigger());
+
+	mXboxController.SetVibration(leftActuatorIntensity, rightActuatorIntensity);
 
 	float rTrigger = mXboxController.RightTrigger();
 

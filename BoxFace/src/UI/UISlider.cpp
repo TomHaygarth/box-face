@@ -26,17 +26,20 @@ void UISlider::OnClick()
 
 void UISlider::Draw(HDC &hdc,float &screenWidth, float &screenHeight)
 {
-	RECT rt;
-	rt.top = m_drawRect.top * screenHeight;
-	rt.bottom = m_drawRect.bottom * screenHeight;
-	rt.left = m_drawRect.left * screenWidth;
-	rt.right = m_drawRect.right * screenWidth;
+	int top = static_cast<LONG>(m_drawRect.top * screenHeight);
+	int bottom = static_cast<LONG>(m_drawRect.bottom * screenHeight);
+	int left = static_cast<LONG>(m_drawRect.left * screenWidth);
+	int right = static_cast<LONG>(m_drawRect.right * screenWidth);
+
+	int midPoint = top + static_cast<int>((bottom - top)*0.5f);
 
 	// move to the left side of the drawing rectangle, and the centre point.
-	MoveToEx(hdc, (int) rt.left, (int) rt.top + ((rt.bottom -rt.top)*0.5f), (LPPOINT) NULL); 
-    LineTo(hdc, (int) rt.right, (int) rt.top + ((rt.bottom -rt.top)*0.5f)); 
+	MoveToEx(hdc, left, midPoint, static_cast<LPPOINT>(NULL));
+    LineTo(hdc, right, midPoint);
    
+	int markerPoint = left + static_cast<int>((right - left)*m_value);
+
 	// move to the top side of the drawing rectangle, and the point.
-	MoveToEx(hdc, (int) rt.left +((rt.right-rt.left)*m_value), (int) rt.top, (LPPOINT) NULL);
-	LineTo(hdc, (int)  rt.left +((rt.right-rt.left)*m_value), (int) rt.bottom);
+	MoveToEx(hdc, markerPoint, top, static_cast<LPPOINT>(NULL));
+	LineTo(hdc, markerPoint, bottom);
 }
