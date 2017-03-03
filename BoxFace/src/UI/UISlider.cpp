@@ -24,7 +24,7 @@ void UISlider::OnClick()
 	m_selected = true;
 }
 
-void UISlider::Draw(HDC &hdc,float &screenWidth, float &screenHeight)
+void UISlider::Draw(HDC &hdc, const float &screenWidth, const float &screenHeight)  const
 {
 	int top = static_cast<LONG>(m_drawRect.top * screenHeight);
 	int bottom = static_cast<LONG>(m_drawRect.bottom * screenHeight);

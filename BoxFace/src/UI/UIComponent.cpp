@@ -15,7 +15,7 @@ void UIComponent::OnClick()
 	m_selected = true;
 }
 
-void UIComponent::Draw(HDC &hdc,float &screenWidth, float &screenHeight)
+void UIComponent::Draw(HDC &hdc, const float &screenWidth, const float &screenHeight)  const
 {
 	RECT rt;
 	rt.top = static_cast<LONG>(m_drawRect.top * screenHeight);

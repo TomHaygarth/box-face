@@ -47,7 +47,7 @@ public:
 
 	virtual void OnClick();
 
-	virtual void Draw(HDC &hdc, float &screenWidth, float &screenHeight);
+	virtual void Draw(HDC &hdc, const float &screenWidth, const float &screenHeight) const;
 
 
 protected:

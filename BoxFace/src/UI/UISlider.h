@@ -26,7 +26,7 @@ public:
 
 	void OnClick();
 
-	void Draw(HDC &hdc, float &screenWidth, float &screenHeight);
+	void Draw(HDC &hdc, const float &screenWidth, const float &screenHeight) const;
 
 
 protected:
