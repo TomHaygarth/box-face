@@ -1,6 +1,3 @@
-#ifndef _BOX_FACE_APP
-#define _BOX_FACE_APP
-
 /*
 	File: Main.cpp
 	Author: Tom Haygarth
@@ -10,6 +7,8 @@
 	The application is designed to use input gained from the XInput interface to emulate keyboard and mouse functionality.
 	By mapping various keys and mouse directions onto the keys and analogue sticks.
 */
+
+#pragma once
 
 // include files
 #include <windows.h>
@@ -68,5 +67,3 @@ private:
 	UISlider * mMouseLookSlider;
 	
 };
-
-#endif

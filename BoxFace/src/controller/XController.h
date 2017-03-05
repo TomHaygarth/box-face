@@ -1,6 +1,3 @@
-#ifndef _XCONTROLLER_H_
-#define _XCONTROLLER_H_
-
 /*
 	File: XController.h
 	Author: Tom Haygarth
@@ -9,6 +6,8 @@
 
 	Xcontroller is a class that encapsulates the functionality of an Xbox360 controller 
 */
+
+#pragma once
 
 #include <Windows.h>
 #include <XInput.h>
@@ -25,7 +24,7 @@ namespace BoxFace
 	class XController
 	{
 	public:
-	
+
 
 		///--- Initialises the controller ---///
 		///--- ControllerID is the controller number (range from 0-3) ---///
@@ -53,7 +52,7 @@ namespace BoxFace
 
 		float LeftTrigger();
 		float RightTrigger();
-		
+
 	private:
 
 		BOXVEC2 mLeftStickPos;
@@ -65,6 +64,4 @@ namespace BoxFace
 		int mControllerID;
 
 	};
-
 }
-#endif

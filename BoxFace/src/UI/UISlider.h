@@ -1,6 +1,3 @@
-#ifndef _UI_SLIDER_H_
-#define _UI_SLIDER_H_
-
 /*
 	File: UISlider.h
 	Author: Tom Haygarth
@@ -10,6 +7,8 @@
 	The UISlider is a simple UI object that acts as an adjustable slider. It inherits from the base class UIComponent and as a result is also drawn
 	using viewport coordinates between 0 and 1. The value of the slider is returned as a float between 0 and 1 using the GetValue() fuction. 
 */
+
+#pragma once
 
 #include <Windows.h>
 #include <string>
@@ -32,5 +31,3 @@ public:
 protected:
 
 };
-
-#endif

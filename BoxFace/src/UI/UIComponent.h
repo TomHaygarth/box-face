@@ -1,6 +1,3 @@
-#ifndef _UI_COMPONENT_H_
-#define _UI_COMPONENT_H_
-
 /*
 	File: UIComponent.h
 	Author: Tom Haygarth
@@ -12,6 +9,8 @@
 	The position and size of the UIComponent object is specified in viewport coordinates between 0 and 1, where 0,0 is the top left corner of the screen. The 
 	reason behind this is to allow all UIComponents to scale according to screen size/resolution.
 */
+
+#pragma once
 
 #include <Windows.h>
 #include <string>
@@ -58,5 +57,3 @@ protected:
 	bool m_selected;
 	float m_value;
 };
-
-#endif
