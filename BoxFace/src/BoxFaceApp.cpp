@@ -9,6 +9,7 @@ bool BoxFaceApp::Initialise()
 {
 	if(!mXboxController.Initialise(0))
 	{
+		MessageBox(NULL, "No controller found!", NULL, MB_ICONEXCLAMATION | MB_OK);
 		return false;
 	}
 
