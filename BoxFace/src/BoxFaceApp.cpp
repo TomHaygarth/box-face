@@ -90,7 +90,12 @@ void BoxFaceApp::Update()
 	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_START))
 	{
 
-		PostKeyPress(VK_ESCAPE);
+		PostKeyDown(VK_ESCAPE);
+	}
+	else if (mXboxController.ButtonReleased(XINPUT_GAMEPAD_START))
+	{
+
+		PostKeyUp(VK_ESCAPE);
 	}
 
 	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_A))
@@ -98,7 +103,7 @@ void BoxFaceApp::Update()
 
 		PostKeyDown(' ');
 	}
-	if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_A))
+	else if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_A))
 	{
 
 		PostKeyUp(' ');
@@ -109,7 +114,7 @@ void BoxFaceApp::Update()
 
 		PostKeyDown('E');
 	}
-	if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_B))
+	else if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_B))
 	{
 
 		PostKeyUp('E');
@@ -174,12 +179,12 @@ void BoxFaceApp::Update()
 	{
 		mLstickRight = true;
 	}
-	else if (mXboxController.LeftStickPos().X <  0.6f)
+	else if (mXboxController.LeftStickPos().X <  -0.6f)
 	{
 		mLstickLeft = true;
 	}
 
-	if(mXboxController.LeftStickPos().Y < 0.5f)
+	if(mXboxController.LeftStickPos().Y < -0.6f)
 	{
 		mLstickBackward = true;
 	}
