@@ -54,10 +54,10 @@ void BoxFaceApp::Unload()
 {
 	delete mButtonConfig;
 	mButtonConfig = 0;
-	delete mMouseLookSlider;
-	mMouseLookSlider = 0;
 	delete mSliderInfoText;
 	mSliderInfoText = 0;
+	delete mMouseLookSlider;
+	mMouseLookSlider = 0;
 }
 
 void BoxFaceApp::Update()
