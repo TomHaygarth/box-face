@@ -17,11 +17,13 @@
 #include "controller\XController.h"
 #include "UI\UIComponent.h"
 #include "UI\UISlider.h"
+#include "configuration\IConfigurationManager.h"
 
 using namespace std;
 using BoxFace::BOXVEC2;
 using BoxFace::XController;
 
+using BoxFace::Configuration::IConfigurationManager;
 
 class BoxFaceApp
 {
@@ -67,5 +69,7 @@ private:
 
 	UIComponent * mSliderInfoText;
 	UISlider * mMouseLookSlider;
+
+	IConfigurationManager * mButtonConfig;
 	
 };

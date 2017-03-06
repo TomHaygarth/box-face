@@ -86,16 +86,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\BoxFaceApp.h" />
+    <ClInclude Include="src\configuration\ButtonConfigManager.h" />
+    <ClInclude Include="src\configuration\IConfigurationManager.h" />
     <ClInclude Include="src\controller\XController.h" />
     <ClInclude Include="src\UI\UIComponent.h" />
     <ClInclude Include="src\UI\UISlider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BoxFaceApp.cpp" />
+    <ClCompile Include="src\configuration\ButtonConfigManager.cpp" />
     <ClCompile Include="src\controller\XController.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\UI\UIComponent.cpp" />
     <ClCompile Include="src\UI\UISlider.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\config\buttons.cfg">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

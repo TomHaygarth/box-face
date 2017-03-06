@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 
+#include "configuration\ButtonConfigManager.h"
 
 bool BoxFaceApp::Initialise()
 {
@@ -38,11 +39,21 @@ bool BoxFaceApp::Initialise()
 	rect.bottom += 0.05f;
 	mSliderInfoText = new UIComponent("Mouse Sensitivety slider value: ", rect);
 
+	mButtonConfig = new BoxFace::Configuration::ButtonConfigManager();
+
+	if (!mButtonConfig->LoadConfigFile("config/buttons.cfg"))
+	{
+		MessageBox(NULL, "Failed to find button config file!", NULL, MB_ICONEXCLAMATION | MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
 void BoxFaceApp::Unload()
 {
+	delete mButtonConfig;
+	mButtonConfig = 0;
 	delete mMouseLookSlider;
 	mMouseLookSlider = 0;
 	delete mSliderInfoText;
@@ -88,11 +99,15 @@ void BoxFaceApp::Update()
 	}
 
 	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_START, VK_ESCAPE);
-	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_A, ' ');
-	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_B, 'E');
-	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_X, 'R');
-	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_Y, 'Q');
-	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_LEFT_SHOULDER, VK_SHIFT);
+	
+	char buttonKeyCode;
+
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_A, mButtonConfig->TryGetChar("A", buttonKeyCode) ? buttonKeyCode : ' ');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_B, mButtonConfig->TryGetChar("B", buttonKeyCode) ? buttonKeyCode : 'E');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_X, mButtonConfig->TryGetChar("X", buttonKeyCode) ? buttonKeyCode : 'R');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_Y, mButtonConfig->TryGetChar("Y", buttonKeyCode) ? buttonKeyCode : 'Q');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_LEFT_SHOULDER, mButtonConfig->TryGetChar("L_SHOULDER", buttonKeyCode) ? buttonKeyCode : VK_SHIFT);
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_RIGHT_SHOULDER, mButtonConfig->TryGetChar("R_SHOULDER", buttonKeyCode) ? buttonKeyCode : VK_CONTROL);
 
 	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_DPAD_LEFT))
 	{
@@ -171,53 +186,73 @@ void BoxFaceApp::Update()
 
 	if(mLstickForward)
 	{
+		char keyCode;
+		if (!mButtonConfig->TryGetChar("L_STICK_UP", keyCode))
+		{
+			keyCode = 'W';
+		}
 		if(mXboxController.LeftStickPos().Y <=  0.6f)
 		{
 			mLstickForward = false;
-			PostKeyUp('W');
+			PostKeyUp(keyCode);
 		}
 		else
 		{
-			PostKeyDown('W');
+			PostKeyDown(keyCode);
 		}
 	}
 
 	else if(mLstickBackward)
 	{
+		char keyCode;
+		if (!mButtonConfig->TryGetChar("L_STICK_DOWN", keyCode))
+		{
+			keyCode = 'S';
+		}
 		if(mXboxController.LeftStickPos().Y >= -0.6f)
 		{
 			mLstickBackward = false;
-			PostKeyUp('S');
+			PostKeyUp(keyCode);
 		}
 		else
 		{
-			PostKeyDown('S');
+			PostKeyDown(keyCode);
 		}
 	}
 
 	if(mLstickLeft)
 	{
+		char keyCode;
+		if (!mButtonConfig->TryGetChar("L_STICK_LEFT", keyCode))
+		{
+			keyCode = 'A';
+		}
 		if(mXboxController.LeftStickPos().X >= -0.6f)
 		{
 			mLstickLeft = false;
-			PostKeyUp('A');
+			PostKeyUp(keyCode);
 		}
 		else
 		{
-			PostKeyDown('A');
+			PostKeyDown(keyCode);
 		}
 	}
 
-	if(mLstickRight)
+	else if(mLstickRight)
 	{
+		char keyCode;
+		if (!mButtonConfig->TryGetChar("L_STICK_RIGHT", keyCode))
+		{
+			keyCode = 'D';
+		}
 		if(mXboxController.LeftStickPos().X <= 0.6f)
 		{
 			mLstickRight = false;
-			PostKeyUp('D');
+			PostKeyUp(keyCode);
 		}
 		else
 		{
-			PostKeyDown('D');
+			PostKeyDown(keyCode);
 		}
 	}
 

@@ -25,6 +25,15 @@
     <Filter Include="Header Files\controller">
       <UniqueIdentifier>{68d22d0b-98b2-43c0-93b9-4cd37778ee23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\configuration">
+      <UniqueIdentifier>{f08b3225-1819-4c13-91ea-ef73805d5d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\config">
+      <UniqueIdentifier>{d6c62315-8fe8-4e8d-adfa-42eced69f572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\configuration">
+      <UniqueIdentifier>{762cd87a-fe76-4783-b9df-dd82d56b2684}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BoxFaceApp.h">
@@ -38,6 +47,12 @@
     </ClInclude>
     <ClInclude Include="src\controller\XController.h">
       <Filter>Header Files\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="src\configuration\IConfigurationManager.h">
+      <Filter>Header Files\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="src\configuration\ButtonConfigManager.h">
+      <Filter>Header Files\configuration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,5 +71,13 @@
     <ClCompile Include="src\controller\XController.cpp">
       <Filter>Source Files\controller</Filter>
     </ClCompile>
+    <ClCompile Include="src\configuration\ButtonConfigManager.cpp">
+      <Filter>Source Files\configuration</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\config\buttons.cfg">
+      <Filter>Resource Files\config</Filter>
+    </None>
   </ItemGroup>
 </Project>
