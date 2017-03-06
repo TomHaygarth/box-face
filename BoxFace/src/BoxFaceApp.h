@@ -59,6 +59,8 @@ private:
 
 	// Private functions
 
+	inline void ProcessButtonToKeyEvent(const int& controllerButton, const char& keyCode);
+
 	void PostKeyPress(int Key, bool isExtended = false);
 	void PostKeyDown(int Key, bool isExtended = false);
 	void PostKeyUp(int Key, bool isExtended = false);

@@ -87,38 +87,12 @@ void BoxFaceApp::Update()
 		SetCursorPos(mMousePos.x,mMousePos.y);
 	}
 
-	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_START))
-	{
-
-		PostKeyDown(VK_ESCAPE);
-	}
-	else if (mXboxController.ButtonReleased(XINPUT_GAMEPAD_START))
-	{
-
-		PostKeyUp(VK_ESCAPE);
-	}
-
-	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_A))
-	{
-
-		PostKeyDown(' ');
-	}
-	else if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_A))
-	{
-
-		PostKeyUp(' ');
-	}
-
-	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_B))
-	{
-
-		PostKeyDown('E');
-	}
-	else if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_B))
-	{
-
-		PostKeyUp('E');
-	}
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_START, VK_ESCAPE);
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_A, ' ');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_B, 'E');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_X, 'R');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_Y, 'Q');
+	ProcessButtonToKeyEvent(XINPUT_GAMEPAD_LEFT_SHOULDER, VK_SHIFT);
 
 	if(mXboxController.ButtonPressed(XINPUT_GAMEPAD_DPAD_LEFT))
 	{
@@ -247,16 +221,6 @@ void BoxFaceApp::Update()
 		}
 	}
 
-
-	if(mXboxController.ButtonDown(XINPUT_GAMEPAD_LEFT_SHOULDER))
-	{
-		PostKeyDown(VK_LSHIFT);
-	}
-	else if(mXboxController.ButtonReleased(XINPUT_GAMEPAD_LEFT_SHOULDER))
-	{
-		PostKeyUp(VK_LSHIFT);
-	}
-
 	// if the user is using the up/down on the d-pad increase/decrease the mouse sensitivety
 	if(mXboxController.ButtonDown(XINPUT_GAMEPAD_DPAD_UP) && mMouseLookSlider->GetValue() < 1.0f)
 	{
@@ -295,6 +259,18 @@ void BoxFaceApp::Render(HDC &hdc, HDC &bitmapHDC)
 
 	mMouseLookSlider->Draw(hdc, Max_Screen_X, Max_Screen_Y);
 	mSliderInfoText->Draw(hdc, Max_Screen_X, Max_Screen_Y);
+}
+
+void BoxFaceApp::ProcessButtonToKeyEvent(const int& controllerButton, const char& keyCode)
+{
+	if (mXboxController.ButtonDown(controllerButton))
+	{
+		PostKeyDown(keyCode);
+	}
+	else if (mXboxController.ButtonReleased(controllerButton))
+	{
+		PostKeyUp(keyCode);
+	}
 }
 
 void BoxFaceApp::PostKeyPress(int Key, bool isExtended)
